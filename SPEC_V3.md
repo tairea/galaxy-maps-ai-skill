@@ -1,3 +1,5 @@
+> **SUPERSEDED**: This specification has been superseded by [SPEC_V4.md](./SPEC_V4.md) (Agent Teams architecture). V3 is retained for historical reference only. All active development should follow SPEC_V4.
+
 # Galaxy Maps AI V3 - Separated Skills Specification
 
 ## Overview

@@ -1,7 +1,7 @@
 ---
 name: gm-ai-intent
 description: Captures curriculum intent through the 6-canvas framework - guides users through Audience, Topic, Unique Ideas, Outcomes, Timing, and Assessment
-version: 3.0.0
+version: 4.0.0
 author: Galaxy Maps AI Team
 standalone: true
 model: low
