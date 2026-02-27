@@ -17,29 +17,19 @@ A modular, multi-agent system for creating curriculum-based learning journeys (G
 ## Architecture
 
 ```
-                    gm-ai-orchestrator
-                    (Team Lead - Delegate)
-                            |
-      +----------+----------+----------+----------+
-      |          |          |          |          |
-  Phase 1    Phase 2    Phase 3    Phase 4    Phase 7
-  Intent     Curriculum Critique   Branching  Finalize
-  (single)   (single)   (single)   (single)   (single)
-             +------+   +------+   +------+
-             | 4    |   | 4    |   | 1/   |
-             | comp.|   | adv. |   | star |
-             | desn.|   | revw.|   |      |
-             +------+   +------+   +------+
-                                       |
-                            +----------+----------+
-                            |                     |
-                         Phase 5              Phase 6
-                         Missions             Critique
-                         (team)               (team)
-                         +------+             +------+
-                         | 1/   |             | 4    |
-                         | star |             | revw.|
-                         +------+             +------+
+                          gm-ai-orchestrator
+                          (Team Lead - Delegate)
+                                    |
+      +----------+----------+------+------+----------+----------+
+      |          |          |             |          |          |
+  Phase 1    Phase 2    Phase 3      Phase 4    Phase 5    Phase 6    Phase 7
+  Intent     Curriculum Critique     Branching  Missions   Critique   Finalize
+  (single)   (team)     (team)       (team)     (team)     (team)     (single)
+             +------+   +------+    +------+   +------+   +------+
+             | 4    |   | 4    |    | 1/   |   | 1/   |   | 4    |
+             | comp.|   | adv. |    | star |   | star |   | revw.|
+             | desn.|   | revw.|    |      |   |      |   |      |
+             +------+   +------+    +------+   +------+   +------+
 
 Within Agent Team phases:
   - Teammates share a task list and self-claim work
@@ -100,34 +90,32 @@ The orchestrator never writes content files. During team phases, it creates team
 
 ```
 ~/galaxy-maps/{map-slug}/
-├── INTENT.md                  # User intent (6 areas)
-├── alternatives/              # Competing curriculum designs
-│   ├── MAP_ALT_1.md           #   Foundations-Up
-│   ├── MAP_ALT_2.md           #   Project-Driven
-│   ├── MAP_ALT_3.md           #   Challenge-First
-│   ├── MAP_ALT_4.md           #   Spiral
-│   └── COMPARISON.md          #   Lead-synthesized comparison
-├── MAP_V1.md                  # Selected curriculum structure
-├── critiques/                 # Reviewer outputs
-│   ├── CRITIQUE_PEDAGOGY.md
+├── .git/
+├── INTENT.md                           # Phase 1: User intent (6 areas)
+├── MAP_V1_{TEAM_NAME}.md              # Phase 2: Team-specific curriculum designs
+├── MAP_V1.md                           # Phase 2: Selected curriculum structure
+├── critiques/                          # Reviewer outputs
+│   ├── CRITIQUE_PEDAGOGY.md            #   Phase 3: Curriculum critiques
 │   ├── CRITIQUE_LEARNER.md
 │   ├── CRITIQUE_SCOPE.md
 │   ├── CRITIQUE_DEVILS.md
-│   ├── MISSION_CRITIQUE_TECHNICAL.md
+│   ├── MISSION_CRITIQUE_TECHNICAL.md   #   Phase 6: Mission critiques
 │   ├── MISSION_CRITIQUE_LEARNING_DESIGN.md
 │   ├── MISSION_CRITIQUE_ENGAGEMENT.md
 │   └── MISSION_CRITIQUE_AUDIENCE.md
-├── MAP_V1_SUGGESTIONS.md      # Consensus critique suggestions
-├── MAP_V2.md                  # Refined structure
-├── branches/                  # Side-quest branches
-│   └── STAR_{n}_BRANCH_{m}.md
-├── missions/                  # HTML lesson content
+├── MAP_V{n}_SUGGESTIONS.md             # Phase 3: Consensus critique suggestions
+├── MAP_V2.md                           # Refined structure (V3, V4... per iteration)
+├── branches/                           # Phase 4: Side-quest branches
+│   ├── STAR_{n}_BRANCH_{m}.md          #   1-3 branches per star
+│   └── ...
+├── missions/                           # Phase 5: HTML lesson content
 │   ├── star_1/
 │   │   ├── MISSION_1_1.md
-│   │   └── MISSION_1_1.html
+│   │   ├── MISSION_1_1.html
+│   │   └── ...
 │   └── ...
-├── MISSION_SUGGESTIONS.md     # Mission critique suggestions
-└── GALAXY_MAP.json            # Final database payload
+├── MISSION_SUGGESTIONS.md              # Phase 6: Mission critique suggestions
+└── GALAXY_MAP.json                     # Phase 7: Final database payload
 ```
 
 ## Documentation
